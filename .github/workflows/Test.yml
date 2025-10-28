@@ -1,0 +1,25 @@
+# SPDX-FileCopyrightText: 2024-2025 Authors (see AUTHORS.txt)
+#
+# SPDX-License-Identifier: Apache-2.0
+
+
+name: Test of OpenCL on MacOS Arm platform
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-opencl:
+    name: Test OpenCL
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, macos-15, macos-26, macos-15-intel]
+    steps:
+      - name: Run clinfo
+        shell: bash
+        run: |
+          brew install clinfo
+          clinfo
+
